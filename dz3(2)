@@ -1,0 +1,38 @@
+#include <iostream>
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <iomanip>
+using namespace std;
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	float S, r, m, n, p, e, k;
+	cout << "Введите сумму займа: ";
+	cin >> S;
+	cout << "Введите месячную выплату: ";
+	cin >> m;
+	cout << "Введите кол-во лет: ";
+	cin >> n;
+	if ((S != 0) && (m != 0) && (n != 0)) {
+		for (p = 0; p <= 100; p += 0.01) {
+			r = (p / 100);
+			e = (S * r * pow((1 + r), n) / (12 * ((pow((1 + r), n)) - 1)));
+			if (e >= m) {
+				if (p < 1) {
+					k = p - 0.01;
+
+				}
+				else {
+					k = p;
+				}
+				cout << "Процент: ";
+				cout << setprecision(2) << k << endl;
+				break;
+			}
+		}
+	}
+	else {
+		cout << "Некорректно введены данные." << endl;
+	}
+	return 0;
+}
