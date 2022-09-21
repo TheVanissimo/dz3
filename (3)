@@ -1,0 +1,41 @@
+#include <iostream>;
+#include <string>;
+#include <fstream>;
+#include <istream>;
+using namespace std;
+int main() {
+
+	setlocale(LC_ALL, "Rus");
+	string path = "myFile.txt";
+	ofstream fout;
+	fout.open(path);
+	if (!fout.is_open()) {
+		cout << "Ошибка открытия файла!" << endl;
+	}
+	else
+	{
+		cout << "Введите текст в файл:" << endl;
+		string a;
+		cin >> a;
+		fout << a;
+	}
+	fout.close();
+
+	ifstream fin;
+	fin.open(path);
+	if (!fin.is_open()) {
+		cout << "Ошибка открытия файла!" << endl;
+	}
+	else
+	{
+		cout << "Файл открыт" << endl;
+		char ch;
+		while (fin.get(ch)) {
+			cout << ch;
+		}
+
+	}
+	fin.close();
+
+	return 0;
+}
