@@ -14,10 +14,10 @@ int main() {
 	}
 	else
 	{
-		cout << "Введите текст в файл:" << endl;
 		string a;
-		cin >> a;
-		fout << a;
+		cout << "Ввод текста в файл: \n";
+		getline(std::cin, a);
+		fout << a << endl;
 	}
 	fout.close();
 
@@ -29,11 +29,13 @@ int main() {
 	else
 	{
 		cout << "Файл открыт" << endl;
-		char ch;
-		while (fin.get(ch)) {
-			cout << ch;
+		string str;
+		while (!fin.eof())
+		{
+			str = "";
+			getline(fin, str);
+			cout << str << endl;
 		}
-
 	}
 	fin.close();
 
