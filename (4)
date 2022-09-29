@@ -4,41 +4,47 @@
 #include <istream>;
 using namespace std;
 int main() {
-setlocale(LC_ALL, "Rus");
-string path = "myFile.txt";
-ofstream fout;
-fout.open(path);
-if (!fout.is_open()) {
-	cout << "Ошибка открытия файла!" << endl;
-}
-else
-{
-	string a;
-	cout << "Ввод текста в файл: \n";
-	getline(std::cin, a);
-	fout << a << endl;
-}
-fout.close();
-
-ifstream fin;
-fin.open(path);
-if (!fin.is_open()) {
-	cout << "Ошибка открытия файла!" << endl;
-}
-else
-{
-	cout << "Файл открыт!" << endl;
-	char ch;
-	while (fin.get(ch)) {
-		if (isdigit(ch)) {
-			cout << ch;
-		}
-		else {
-			cout << " ";
-		}
-	}
-}
-fin.close();
-
-return 0;
+    setlocale(LC_ALL, "Rus");
+    string path = "myFile.txt";
+    ofstream fout;
+    fout.open(path);
+    if (!fout.is_open()) {
+        cout << "Ошибка открытия файла!" << endl;
+    }
+    else
+    {
+        string a;
+        cout << "Ввод текста в файл: \n";
+        getline(std::cin, a);
+        fout << a << endl;
+    }
+    fout.close();
+ 
+    ifstream fin;
+    bool simb = false;
+    fin.open(path);
+    if (!fin.is_open()) {
+        cout << "Ошибка открытия файла!" << endl;
+    }
+    else
+    {
+        cout << "Файл открыт!" << endl;
+        char ch;
+        while (fin.get(ch)) {
+            if (isdigit(ch)) {
+                cout << ch;
+                simb = true;
+            }
+            else {
+                if (simb == true) {
+                    cout << " ";
+                }
+                simb = false;
+                
+            }
+        }
+    }
+    fin.close();
+ 
+    return 0;
 }
