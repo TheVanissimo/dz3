@@ -1,38 +1,48 @@
 #include <iostream>
-#define _USE_MATH_DEFINES
-#include <math.h>
-#include <iomanip>
 using namespace std;
-int main()
-{
-	setlocale(LC_ALL, "Rus");
-	float S, r, m, n, p, e, k;
-	cout << "Введите сумму займа: ";
-	cin >> S;
-	cout << "Введите месячную выплату: ";
-	cin >> m;
-	cout << "Введите кол-во лет: ";
-	cin >> n;
-	if ((S != 0) && (m != 0) && (n != 0)) {
-		for (p = 0; p <= 100; p += 0.01) {
-			r = (p / 100);
-			e = (S * r * pow((1 + r), n) / (12 * ((pow((1 + r), n)) - 1)));
-			if (e >= m) {
-				if (p < 1) {
-					k = p - 0.01;
 
-				}
-				else {
-					k = p;
-				}
-				cout << "Процент: ";
-				cout << setprecision(2) << k << endl;
-				break;
-			}
+float s, p, n;
+double ssudasumma(float s, float p, float n) {
+	float r;
+	r = p / 100;
+	double m;
+	m = (s * r * pow(1 + r, n)) / (12 * (pow(1 + r, n) - 1));
+	return m;
+}
+int main() {
+	setlocale(LC_ALL, "Rus");
+	float s, p, n, m;
+	cout << "Введите сумму кредита" << endl;
+	cin >> s;
+	cout << "Введите кол-во лет" << endl;
+	cin >> n;
+	cout << "Введите месячную выплату" << endl;
+	cin >> m;
+	if ((n == 0) or (s < 0)) {
+		if (n == 0) {
+			cout << "Количество лет равно 0. Задача не имеет смысла, т.к. проценты не начислятся";
+		}
+		if (s < 0) {
+			cout << "Сумма кредита меньше 0";
 		}
 	}
 	else {
-		cout << "Некорректно введены данные." << endl;
+		double l, ri, mi;
+		float ep;
+		ri = pow(10, 8);
+		l = -(pow(10, 4));
+		ep = pow(10, -3);
+		mi = 0.0;
+		while (ri - l > ep) {
+			mi = (l + ri) / 2;
+			if (ssudasumma(s, mi, n) >= m) {
+				ri = mi;
+			}
+			else {
+				l = mi;
+			}
+		}
+		cout << "Процент с дробной частью " << l << endl;
+		cout << "Примерно равен " << round(l) << endl;
 	}
-	return 0;
 }
