@@ -1,0 +1,27 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Rus");
+    double s, n, p, m;
+    cout << "Введите сумму займа (S) руб." << endl;
+    cin >> s;
+    cout << "Введите количество (n) лет" << endl;
+    cin >> n;
+    cout << "Введите процент по займу (p)" << endl;
+    cin >> p;
+    double r = p / 100;
+    if ((s > 0) and (n > 0) and ((r > -1) or int(n) == n) and ((r != -2) and (n == int(n)) and (int(n) % 2) != 0)) {
+        if (p != 0) {
+            m = (s * r * (pow((1 + r), n))) / (12 * (pow((1 + r), n) - 1));
+        }
+        else {
+            m = s / (12 * n);
+        }
+        cout << "Месячный платеж равен: " << m << " руб" << endl;
+    }
+    else {
+        cout << "Некорректно введены значения (ОДЗ). " << endl;
+    }
+}
