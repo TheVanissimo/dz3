@@ -2,6 +2,7 @@
 #include <string>;
 #include <fstream>;
 #include <istream>;
+#include <ctype.h>;
 using namespace std;
 int main() {
 	setlocale(LC_ALL, "Rus");
@@ -13,12 +14,12 @@ int main() {
 	for (int i = 0; i < 30; i++) {
 		if (!(isalpha(letters[i]))) {
 			cout << "Не все символы являются буквами. Повторите попытку." << endl;
-				return 0;
+			return 0;
 		}
 	}
 	for (int i = 0; i < 30; i++) {
 		for (int j = 0; j < 29; j++) {
-			if ((int(letters[j])) > (int(letters[j + 1]))) {
+			if ((tolower(int(letters[j]))) > (tolower(int(letters[j + 1])))){
 				char b = letters[j];
 				letters[j] = letters[j + 1];
 				letters[j + 1] = b;
